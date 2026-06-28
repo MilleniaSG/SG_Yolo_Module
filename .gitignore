@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+
+# Runtime / generated
+smart_glasses_dashboard/uploads/
+smart_glasses_dashboard/models/*.pt
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/

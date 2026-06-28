@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Glasses CV Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="top-bar">
+      <button id="btn-upload">Load Video</button>
+      <input type="file" id="file-input" accept="video/mp4,video/avi,video/quicktime,video/x-matroska" hidden />
+      <button id="btn-webcam">Webcam</button>
+      <button id="btn-continuity">Continuity Camera</button>
+      <label>Camera:
+        <select id="camera-select"></select>
+      </label>
+      <span id="status" class="status"></span>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab active" data-tab="live">Live View</button>
+      <button class="tab" data-tab="map">Point Cloud Map</button>
+    </nav>
+
+    <div id="view-live" class="view active">
+      <main class="panels">
+        <section class="panel" data-accent="original">
+          <div class="panel-header">ORIGINAL FEED</div>
+          <img id="img-original" alt="Original feed" />
+        </section>
+        <section class="panel" data-accent="yolo">
+          <div class="panel-header">YOLO 3D</div>
+          <img id="img-yolo" alt="YOLO 3D" />
+        </section>
+        <section class="panel" data-accent="orb">
+          <div class="panel-header">ORB-SLAM</div>
+          <img id="img-orb" alt="ORB-SLAM" />
+        </section>
+      </main>
+    </div>
+
+    <div id="view-map" class="view">
+      <div id="map-3d-container">
+        <canvas id="map-canvas"></canvas>
+        <div id="map-hud" class="map-hud">
+          <div class="map-hud-title">YOUR LOCATION — 3D POINT CLOUD</div>
+          <div id="map-pos">Position: waiting for data…</div>
+          <div id="map-stats">Points: 0 · Status: INIT</div>
+          <div class="map-hud-hint">Drag to orbit · Scroll to zoom · Map builds as you move</div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="controls">
+      <button id="btn-play">Pause</button>
+      <span id="speed-label">Speed: 1.0x</span>
+      <input type="range" id="speed-slider" min="0" max="5" value="3" />
+      <input type="range" id="scrubber" min="0" max="1000" value="0" disabled />
+      <span id="time-label">00:00 / 00:00</span>
+      <label><input type="checkbox" id="loop-check" /> Loop</label>
+      <span class="hint">Y yolo · O orb</span>
+    </footer>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
